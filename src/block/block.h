@@ -6,7 +6,6 @@ enum FACE {
     FACE_TOP = 0,
     FACE_BOTTOM,
     FACE_LEFT,
-    FACE_RIGHT,
     FACE_FRONT,
     FACE_BACK,
 };

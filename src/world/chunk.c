@@ -134,6 +134,23 @@ void chunk_change_blocks(chunk_t *chunk, ivec3 pos, int id)
 {
     int index = BLOCK_INDEX(pos[0], pos[1], pos[2]);
     chunk->data[index] = id;
+
+    if (pos[0] == 0 && chunk->neighbors[CHUNK_LEFT] != NULL) {
+        chunk_build(chunk->neighbors[CHUNK_LEFT]);
+    }
+
+    if (pos[0] == CHUNK_SIZE - 1 && chunk->neighbors[CHUNK_RIGHT] != NULL) {
+        chunk_build(chunk->neighbors[CHUNK_RIGHT]);
+    }
+
+    if (pos[2] == 0 && chunk->neighbors[CHUNK_FRONT] != NULL) {
+        chunk_build(chunk->neighbors[CHUNK_FRONT]);
+    }
+
+    if (pos[2] == CHUNK_SIZE - 1 && chunk->neighbors[CHUNK_BACK] != NULL) {
+        chunk_build(chunk->neighbors[CHUNK_BACK]);
+    }
+
     chunk_build(chunk);
 }
 
